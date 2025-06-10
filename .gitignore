@@ -1,5 +1,2 @@
-*
-!*.md
-!*.go
-!go.mod
-!.gitignore
+*.json
+yt-playlist-sorter
