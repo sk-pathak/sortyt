@@ -1,0 +1,5 @@
+*
+!*.md
+!*.go
+!go.mod
+!.gitignore
