@@ -1,11 +1,11 @@
-# 🎬 yt-playlist-sorter
+# Youtube Playlist Sorter
 
 A simple command-line tool to easily **sort any YouTube playlist by original upload date**. Creates a new **private** playlist with the videos in chronological order.
 
 
 ---
 
-## 🚀 Features
+## Features
 
 - 🔗 Accepts any YouTube playlist URL
 - 🧹 Sorts videos from **oldest to newest**  
@@ -14,7 +14,7 @@ A simple command-line tool to easily **sort any YouTube playlist by original upl
 
 ---
 
-## 📦 Installation
+## Installation
 
 Make sure you have Go installed (version 1.18+ recommended).
 
@@ -27,7 +27,7 @@ go build -o yt-playlist-sorter
 
 ---
 
-## 🛠 Initial Setup
+## Initial Setup
 
 Before using the tool, set up your **YouTube API credentials**:
 
@@ -38,11 +38,11 @@ Before using the tool, set up your **YouTube API credentials**:
 You'll be prompted to enter your **Client ID** and **Client Secret**.  
 These are obtained by creating OAuth 2.0 credentials for a **Desktop App** in your [Google Cloud Console](https://console.cloud.google.com/).
 
-📝 The tool will save your credentials to `config.json` and fetch an OAuth token via a browser flow.
+The tool will save your credentials to `config.json` and fetch an OAuth token via a browser flow.
 
 ---
 
-## ✅ Usage
+## Usage
 
 To sort a playlist:
 
