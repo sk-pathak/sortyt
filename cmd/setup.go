@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/sk-pathak/sortyt/config"
 	"github.com/spf13/cobra"
-	"sortyt/config"
 )
 
 var setupCmd = &cobra.Command{

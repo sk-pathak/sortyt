@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"log"
 
-	"sortyt/config"
-	"sortyt/internal/utils"
-	"sortyt/internal/youtube"
+	"github.com/sk-pathak/sortyt/config"
+	"github.com/sk-pathak/sortyt/internal/utils"
+	"github.com/sk-pathak/sortyt/internal/youtube"
 
 	"github.com/spf13/cobra"
 )

@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"sortyt/config"
+	"github.com/sk-pathak/sortyt/config"
 
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"

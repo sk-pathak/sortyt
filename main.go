@@ -1,6 +1,6 @@
 package main
 
-import "sortyt/cmd"
+import "github.com/sk-pathak/sortyt/cmd"
 
 func main() {
 	cmd.Execute()
