@@ -1,4 +1,4 @@
-module yt-playlist-sorter
+module sortyt
 
 go 1.24.4
 

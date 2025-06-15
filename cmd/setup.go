@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"yt-playlist-sorter/internal/config"
 	"github.com/spf13/cobra"
+	"sortyt/internal/config"
 )
 
 var setupCmd = &cobra.Command{

@@ -7,7 +7,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "yt-playlist-sorter",
+	Use:   "sortyt",
 	Short: "Sort YouTube playlists by video upload date",
 	Long:  `A CLI tool to sort YouTube playlists chronologically and create a new sorted private playlist.`,
 }

@@ -1,6 +1,6 @@
 package main
 
-import "yt-playlist-sorter/cmd"
+import "sortyt/cmd"
 
 func main() {
 	cmd.Execute()

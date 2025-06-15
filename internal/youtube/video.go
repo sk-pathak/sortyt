@@ -10,9 +10,9 @@ import (
 )
 
 type Video struct {
-	ID           string
-	Title        string
-	PublishedAt  time.Time
+	ID              string
+	Title           string
+	PublishedAt     time.Time
 	AddedToPlaylist time.Time
 }
 
@@ -70,7 +70,7 @@ func getPlaylistVideos(service *youtube.Service, playlistID string) ([]Video, er
 func populateUploadDates(service *youtube.Service, videos []Video) error {
 	batchSize := 50
 	for i := 0; i < len(videos); i += batchSize {
-		end := min(i + batchSize, len(videos))
+		end := min(i+batchSize, len(videos))
 
 		var ids []string
 		for _, v := range videos[i:end] {

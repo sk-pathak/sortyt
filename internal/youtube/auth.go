@@ -8,10 +8,10 @@ import (
 	"os"
 	"time"
 
-	"yt-playlist-sorter/internal/config"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/youtube/v3"
+	"sortyt/internal/config"
 )
 
 const tokenFile = "token.json"

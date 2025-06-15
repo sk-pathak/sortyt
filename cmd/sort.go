@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"log"
 
-	"yt-playlist-sorter/internal/config"
-	"yt-playlist-sorter/internal/youtube"
-	"yt-playlist-sorter/internal/utils"
+	"sortyt/internal/config"
+	"sortyt/internal/utils"
+	"sortyt/internal/youtube"
 
 	"github.com/spf13/cobra"
 )
