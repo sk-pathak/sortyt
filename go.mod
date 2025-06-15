@@ -1,4 +1,4 @@
-module sortyt
+module github.com/sk-pathak/sortyt
 
 go 1.24.4
 
