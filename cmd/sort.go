@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"sortyt/internal/config"
+	"sortyt/config"
 	"sortyt/internal/utils"
 	"sortyt/internal/youtube"
 

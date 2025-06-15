@@ -63,7 +63,6 @@ The tool will create a new private playlist with videos in chronological order.
 ## Next Steps
 
 - Store client ID, client secret in ~/.config/sortyt, encrypted
-- 
 - Use secret key to decrypt (secret key to be inserted by user each time)
 - close window automatically (maybe use xdg-open & not clickable link)
 

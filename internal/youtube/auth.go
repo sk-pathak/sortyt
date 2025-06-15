@@ -6,15 +6,18 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"path/filepath"
 	"time"
+
+	"sortyt/config"
 
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
+	"google.golang.org/api/option"
 	"google.golang.org/api/youtube/v3"
-	"sortyt/internal/config"
 )
 
-const tokenFile = "token.json"
+const tokenFileName = "token.json"
 
 func NewService(cfg *config.Config) (*youtube.Service, error) {
 	oauthCfg := &oauth2.Config{
@@ -31,7 +34,7 @@ func NewService(cfg *config.Config) (*youtube.Service, error) {
 	}
 
 	client := oauthCfg.Client(context.Background(), token)
-	return youtube.New(client)
+	return youtube.NewService(context.Background(), option.WithHTTPClient(client))
 }
 
 func getToken(cfg *oauth2.Config) (*oauth2.Token, error) {
@@ -42,10 +45,16 @@ func getToken(cfg *oauth2.Config) (*oauth2.Token, error) {
 }
 
 func loadToken() (*oauth2.Token, error) {
-	data, err := os.ReadFile(tokenFile)
+	configDir, err := configDirPath()
 	if err != nil {
 		return nil, err
 	}
+
+	data, err := os.ReadFile(filepath.Join(configDir, tokenFileName))
+	if err != nil {
+		return nil, err
+	}
+
 	var token oauth2.Token
 	err = json.Unmarshal(data, &token)
 	return &token, err
@@ -59,11 +68,17 @@ func getTokenFromWeb(cfg *oauth2.Config) (*oauth2.Token, error) {
 	server := &http.Server{Addr: ":8080"}
 
 	http.HandleFunc("/callback", func(w http.ResponseWriter, r *http.Request) {
-		codeChan <- r.URL.Query().Get("code")
+		code := r.URL.Query().Get("code")
+		if code == "" {
+			http.Error(w, "Authorization code not found", http.StatusBadRequest)
+			return
+		}
+		codeChan <- code
 		fmt.Fprintln(w, "Authorized! You can close this window.")
+
 		go func() {
-			time.Sleep(2 * time.Second)
-			server.Shutdown(context.Background())
+			time.Sleep(1 * time.Second)
+			_ = server.Shutdown(context.Background())
 		}()
 	})
 
@@ -75,14 +90,27 @@ func getTokenFromWeb(cfg *oauth2.Config) (*oauth2.Token, error) {
 		return nil, err
 	}
 
-	saveToken(token)
+	if err := saveToken(token); err != nil {
+		fmt.Fprintf(os.Stderr, "Warning: failed to save token: %v\n", err)
+	}
+
 	return token, nil
 }
 
 func saveToken(token *oauth2.Token) error {
-	data, err := json.Marshal(token)
+	configDir, err := configDirPath()
 	if err != nil {
 		return err
 	}
-	return os.WriteFile(tokenFile, data, 0644)
+
+	data, err := json.MarshalIndent(token, "", "  ")
+	if err != nil {
+		return err
+	}
+
+	return os.WriteFile(filepath.Join(configDir, tokenFileName), data, 0600)
+}
+
+func configDirPath() (string, error) {
+	return config.GetConfigDir()
 }

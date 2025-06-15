@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"github.com/spf13/cobra"
-	"sortyt/internal/config"
+	"sortyt/config"
 )
 
 var setupCmd = &cobra.Command{
